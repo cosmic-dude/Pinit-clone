@@ -15,11 +15,19 @@ export default function CreatePin() {
     setError(false);
     try {
       // Send the new pin data to the backend
-      await axios.post('https://pinit-clone.vercel.app/api/pins', {
-        title,
-        description,
-        imageUrl
-      });
+      // 1. Grab the token you saved during login
+const token = localStorage.getItem('token'); 
+
+// 2. Send the token in the headers alongside your data
+await axios.post('https://pinit-clone.vercel.app/api/pins', {
+    title,
+    description,
+    imageUrl
+}, {
+    headers: {
+        Authorization: `Bearer ${token}` 
+    }
+});
       // If successful, immediately redirect the user back to the Home feed
       navigate('/');
     } catch (err) {

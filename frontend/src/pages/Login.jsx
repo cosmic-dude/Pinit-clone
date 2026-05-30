@@ -12,7 +12,7 @@ export default function Login({ setUser }) {
     e.preventDefault();
     setError(false);
     try {
-      const res = await axios.post('https://pinit-clone.vercel.app/auth/login', {
+      const res = await axios.post('https://pinit-clone.vercel.app/api/auth/login', {
         email,
         password,
       });
